@@ -1,6 +1,6 @@
 title = "Website Name"
 baseURL = "/"
-disqusShortname = 'spectacular-pages-dev'
+disqusShortname = 'osis.ibaska'
 copyright = 'This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.'
 languageCode = 'id'
 disableKinds = ["taxonomy", "term"]
