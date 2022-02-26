@@ -1,0 +1,112 @@
+---
+label: Article
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: Title
+  description: The title of the article
+  config:
+    required: true
+- type: text
+  name: subtitle
+  label: Subtitle
+  description: The subtitle of the article
+- type: datetime
+  name: date
+  label: Date
+  description: The publish date of the article
+  hidden: false
+  config:
+    required: true
+    date_format: MM/DD/YYYY
+    time_format: 
+    display_utc: false
+    export_format: YYYY-MM-DD
+  default: now
+- type: select
+  name: author
+  label: Author
+  description: The author of the article
+  config:
+    source:
+      type: pages
+      section: authors-10451a36-de49-46cc-93d9-25f293e8a680
+      file: data/data.json
+      path: ''
+- type: list
+  name: categories
+  label: Categories
+  description: The categories of the article
+  config:
+    use_select: true
+    source:
+      type: pages
+      section: categories-9ace25b8-4c20-481c-96ee-9fc6d547aa3b
+      file: data/data.json
+      path: ''
+- type: list
+  name: tags
+  label: Tags
+  description: The tags of the article
+  config:
+    use_select: true
+    source:
+      type: pages
+      section: tags-af8432b3-19cd-4d52-bffd-82387fcc6221
+      file: data/data.json
+      path: ''
+- type: text
+  name: excerpt
+  label: Excerpt
+  description: The excerpt of the article displayed in the article feed
+- type: file
+  name: thumb_image
+  label: Thumbnail Image (article feed)
+  description: The image displayed in the article feed
+- type: text
+  name: thumb_image_alt
+  label: Thumbnail Image alt text (article feed)
+  description: The alt text of the article feed image
+- type: file
+  name: image
+  label: Image (single article)
+  description: The image displayed in the single article
+- type: text
+  name: image_alt
+  label: Image alt text (single article)
+  description: The alt text of the single article image
+- type: select
+  name: image_position
+  label: Image position (single article)
+  description: The featured image position in the article article relative to the
+    article header content
+  default: left
+  config:
+    source:
+      type: custom
+    options:
+    - left
+    - right
+    - top
+- type: boolean
+  name: show_comment
+  label: Show Comment
+  default: true
+- type: field_group
+  name: seo
+  label: Seo
+  fields:
+  - type: include
+    name: include_stackbit_page_meta
+    label: Page meta data
+    template: stackbit_page_meta
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: post
+  config:
+    required: false
+pages:
+- content/article/test.md

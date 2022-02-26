@@ -1,0 +1,44 @@
+{{ $section := .article_feed_section }}
+{{ $section_author := .section_author }}
+{{ $section_category := .section_category }}
+{{ $section_tag := .section_tag }}
+{{ $post := .post_page }}
+{{ $Site := .Site }}
+
+{{ if or (or $section_author $section_category) $section_tag }}
+{{ $is_author := "" }}{{ $is_category := "" }}{{ $is_tag := "" }}
+{{ if $section_author }}
+	{{ $is_author = "false" }}
+	{{ if $post.Params.author }}
+		{{ $post_author := (.Site.GetPage $post.Params.author).Page.Params }}
+		{{ if eq $post_author.id $section_author.id }}
+			{{ $is_author = "true"}}
+		{{ end }}
+	{{ end }}
+{{end}}
+{{ if $section_category }}
+	{{ $is_category = "false" }}
+	{{ range $category := $post.Params.categories }}
+		{{ $post_category := ($Site.GetPage $category).Page.Params }}
+		{{ if eq $post_category.id $section_category.id }}
+			{{ $is_category = "true"}}
+		{{ end }}
+	{{ end }}
+{{end}}
+{{ if $section_tag }}
+	{{ $is_tag = "false" }}
+	{{ range $tag := $post.Params.tags }}
+		{{ $post_tag := ($Site.GetPage $tag).Page.Params }}
+		{{ if eq $post_tag.id $section_tag.id }}
+			{{ $is_tag = "true"}}
+		{{ end }}
+	{{ end }}
+{{end}}
+{{ if and (and (and (not (eq $is_category "false")) (not (eq $is_tag "false"))) (not (eq $is_author "false")))}}
+	{{ $include_dict := dict "article_feed_section" $section "post_page" $post "Site" $Site}}
+	{{ partial "article_post_feed_item.html" $include_dict }}
+{{end}}
+{{ else }}
+	{{ $include_dict := dict "article_feed_section" $section "post_page" $post "Site" .Site }}
+	{{ partial "article_post_feed_item.html" $include_dict }}
+{{ end }}

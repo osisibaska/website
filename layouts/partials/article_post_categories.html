@@ -1,0 +1,14 @@
+{{$Site := .Site}}
+{{ $categories := .categories }}
+{{ $container_class := .container_class }}
+<span class="{{ $container_class }}">
+	{{ $category_len := len $categories }}
+	{{ range $category_idx, $category := $categories }}
+		{{ $category_data := ($Site.GetPage $category).Page }}
+		{{ if and $category_data.URL $category_data.Params.title}}
+			<a href="{{ $category_data.URL | relURL }}">{{ $category_data.Params.title }}</a>{{ if not (eq $category_idx (sub $category_len 1)) }}, {{ end }}
+		{{ else if $category_data.Params.title}}
+			<span>{{ $category_data.Params.title }}</span>{{ if not (eq $category_idx (sub $category_len 1)) }}, {{ end }}
+		{{ end }}
+	{{ end }}
+</span>

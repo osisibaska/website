@@ -1,0 +1,32 @@
+---
+label: Category
+hide_body: true
+display_field: title
+fields:
+- type: text
+  name: id
+  label: ID
+  description: A unique identifier used to differentiate from other categories, e.g.
+    "new-category"
+  config:
+    required: true
+- type: text
+  name: title
+  label: Title
+  description: Category to be displayed on the website
+  config:
+    required: true
+- name: description
+  type: text
+  config:
+    required: false
+  description: The description of the category
+  label: Description
+- type: text
+  name: layout
+  label: Object Type
+  description: The type of the object
+  hidden: true
+  default: term
+  config:
+    required: false

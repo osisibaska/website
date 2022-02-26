@@ -1,0 +1,102 @@
+---
+label: Action
+hide_body: true
+display_field: label
+fields:
+- type: text
+  name: label
+  label: Label
+  config:
+    required: true
+- type: text
+  name: url
+  label: URL
+  default: "#"
+  config:
+    required: true
+- type: select
+  name: style
+  label: Style
+  default: link
+  config:
+    required: true
+    source:
+      type: custom
+    options:
+    - link
+    - primary
+    - secondary
+- type: boolean
+  name: has_icon
+  label: Show icon
+  default: false
+- name: costum_icon
+  type: boolean
+  label: Costum icon
+  default: false
+- type: select
+  name: icon
+  label: Icon
+  config:
+    source:
+      type: simple
+    options:
+    - arrow-left
+    - arrow-right
+    - arrow-up
+    - close
+    - facebook
+    - github
+    - instagram
+    - linkedin
+    - menu
+    - twitter
+    - youtube
+    - vimeo
+    - whatsapp
+    - email
+    - telegram
+  showOnly:
+    field: costum_icon
+- name: path_to_svg_icon
+  type: text
+  config:
+    required: false
+  label: Path to svg icon
+  description: relative path from <code>svg/</code> directory,<br><strong>must be
+    without extension</strong>
+  showOnly:
+    field: costum_icon
+    value: true
+- type: select
+  name: icon_position
+  label: Icon position
+  description: Select "center" to display icon only and hide the label
+  default: right
+  config:
+    source:
+      type: custom
+    options:
+    - left
+    - right
+    - center
+  showOnly:
+    field: has_icon
+    value: true
+- type: boolean
+  name: new_window
+  label: Open in new tab/window
+  default: false
+- type: boolean
+  name: no_follow
+  label: No follow
+  description: Add rel="nofollow" attribute to the link
+  default: false
+- type: text
+  name: type
+  label: Object Type
+  description: The type of the object
+  hidden: true
+  default: action
+  config:
+    required: false

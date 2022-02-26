@@ -1,0 +1,41 @@
+{{ $bg_color := .section.background_color | default "none" }}
+<section class="section {{ if eq $bg_color "none" }} bg-none{{ end }}{{ if eq $bg_color "primary" }} bg-primary{{ end }}{{ if eq $bg_color "secondary" }} bg-secondary{{ end }} pt-6 pb-7 pb-md-7">
+    {{ if or .section.title .section.subtitle }}
+    <div class="container container--medium mb-5 text-center">
+        {{ if .section.subtitle }}
+        <div class="section__subtitle">{{ .section.subtitle }}</div>
+        {{ end }}
+        {{ if .section.title }}
+        <h2 class="section__title mt-0">{{ .section.title }}</h2>
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="container" container-grid><div class="grid">
+        {{ $departements := (.Site.GetPage "section" "/departement").Pages }}
+        {{ range  $departement := $departements}}
+            {{range $section := .Params.sections}}
+                {{if eq $section.type "hero_section"}}
+                {{ $include_dict := dict "section" $section "site" $departement}}
+                {{ partial "departement_feed_item.html" $include_dict }}
+                {{end}}
+            {{end}}
+        {{ end }}
+    </div></div>
+
+<script>
+	var element = document.querySelectorAll('[container-grid]');
+
+	function myFunction(x) {
+		if (x.matches) { // If media query matches
+			for (i = 0; i < element.length; i++) { element[i].classList.add("container--medium"); }
+			
+		} else {
+			for (i = 0; i < element.length; i++) { element[i].classList.remove("container--medium"); };
+		}
+	}
+	var x = window.matchMedia("(max-width: 800px)");
+	myFunction(x);
+	x.addListener(myFunction);
+</script>
+</section>

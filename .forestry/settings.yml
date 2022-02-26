@@ -1,0 +1,103 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: static/admin
+webhook_url: https://api.stackbit.com/project/60a1c297d4881400175678ae/webhook/forestry
+sections:
+- type: heading
+  label: Index
+- type: document
+  path: content/_index.md
+  label: HomePage
+- type: document
+  path: content/article/_index.md
+  label: ArticlePage
+- type: document
+  path: content/events/_index.md
+  label: EventsPage
+- type: heading
+  label: Content
+- type: directory
+  path: content/article
+  label: Article
+  create: documents
+  match: "*"
+  exclude: _index.md
+  new_doc_ext: md
+  templates:
+  - article
+- type: directory
+  path: content/events
+  label: Events
+  create: documents
+  match: "*"
+  exclude: _index.md
+  new_doc_ext: md
+  templates:
+  - events
+- type: directory
+  path: content/departement
+  label: Departement
+  create: documents
+  match: "*"
+  new_doc_ext: md
+  templates:
+  - departement
+- type: directory
+  path: content
+  label: Pages
+  create: documents
+  match: "*"
+  exclude: _index.md
+  new_doc_ext: md
+  templates:
+  - page
+  - advanced
+- type: heading
+  label: Authors, Categories, & Tags
+- type: directory
+  path: content/data/categories
+  label: Categories
+  create: documents
+  match: "*"
+  exclude: _index.md
+  new_doc_ext: md
+  templates:
+  - category
+- type: directory
+  path: content/data/authors
+  label: Authors
+  create: documents
+  match: "*"
+  exclude: _index.md
+  new_doc_ext: md
+  templates:
+  - authors
+- type: directory
+  path: content/data/tags
+  label: Tags
+  create: documents
+  match: "*"
+  exclude: _index.md
+  new_doc_ext: md
+  templates:
+  - tag
+- type: heading
+  label: Header Footer & Config
+- type: document
+  path: config.toml
+  label: Configuration Site
+upload_dir: static/images
+public_path: "/images"
+front_matter_path: ''
+use_front_matter_path: false
+file_template: ":filename:"
+build:
+  preview_env:
+  - HUGO_ENV=staging
+  - HUGO_VERSION=0.83.1
+  preview_output_directory: public
+  preview_docker_image: forestryio/hugo:latest
+  mount_path: "/srv"
+  instant_preview_command: hugo server -D -E -F --renderToDisk -d public
+version: 0.83.1

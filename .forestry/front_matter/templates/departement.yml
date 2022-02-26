@@ -1,0 +1,35 @@
+---
+label: Departement
+hide_body: true
+fields:
+- type: text
+  name: title
+  label: title
+  config:
+    required: true
+- name: sections
+  type: blocks
+  label: sections
+  template_types:
+  - departement_hero
+  - departement_features
+  - departement_grid
+  config:
+    min: 3
+    max: 3
+- type: field_group
+  name: seo
+  label: seo
+  fields:
+  - name: include_stackbit_page_meta
+    type: include
+    config: {}
+    template: stackbit_page_meta
+    label: Page meta data
+- type: text
+  name: layout
+  label: layout
+  hidden: true
+  default: advanced
+pages:
+- content/departement/media-jurnalistik.md

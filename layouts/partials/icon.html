@@ -1,0 +1,43 @@
+{{ $icon := .icon }}
+{{ if eq $icon "arrow-left" }}
+{{ partial "svg.html" "arrow-left" }}
+
+{{ else if eq $icon "arrow-right" }}
+{{ partial "svg.html" "arrow-right" }}
+
+{{ else if eq $icon "close" }}
+{{ partial "svg.html" "close" }}
+
+{{ else if eq $icon "facebook" }}
+{{ partial "svg.html" "brands/facebook" }}
+
+{{ else if eq $icon "github" }}
+{{ partial "svg.html" "github" }}
+
+{{ else if eq $icon "instagram" }}
+{{ partial "svg.html" "instagram" }}
+
+{{ else if eq $icon "linkedin" }}
+{{ partial "svg.html" "linkedin" }}
+
+{{ else if eq $icon "menu" }}
+{{ partial "svg.html" "menu" }}
+
+{{ else if eq $icon "twitter" }}
+{{ partial "svg.html" "twitter" }}
+
+{{ else if eq $icon "youtube" }}
+{{ partial "svg.html" "youtube" }}
+
+{{ else if eq $icon "vimeo" }}
+{{ partial "svg.html" "vimeo" }}
+
+{{ else if eq $icon "whatsapp" }}
+{{ partial "svg.html" "whatsapp" }}
+
+{{ else if eq $icon "email" }}
+{{ partial "svg.html" "email" }}
+
+{{ else if eq $icon "telegram" }}
+{{ partial "svg.html" "brands/telegram-plane" }}
+{{ end }}

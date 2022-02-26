@@ -1,0 +1,71 @@
+{{ define "content" }}
+{{ $Site := .Site}}
+
+<section class="section hero bg-none pt-6 pb-4">
+
+    <div class="container">
+        <div class="hero__content grid items-center">
+            <div class="hero__body my-2 cell-12 text-center">
+                {{$term := .Params}}
+                <div style="display: flex;justify-content: center;flex-direction: row;align-items: center;">
+                    {{if $term.photo}}<img src="{{$term.photo | relURL}}" alt="{{$term.photo_alt}}" style="border-radius: 50%; height: 70px; width: 70px;margin-right: 20px;"></img>{{end}}
+                    <h1 class="hero__title">{{$term.title}}</h1>
+                </div>
+                {{if $term.shortBio}}<div class="sub__term">{{ partial "markdownify-block" $term.shortBio }}</div>{{end}}
+                {{if $term.description}}<div class="sub__term">{{ partial "markdownify-block" $term.description }}</div>{{end}}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section article-feed has-border bg-none pt-4 pb-6 pb-md-7">
+<div class="container" container-grid>
+<div class="grid">
+{{ range $post := (where .Site.RegularPages "Params.layout" "post") }}
+    {{ $include_dict := dict "page" $post "Site" $Site }}
+    {{if $post.Params.tags}}
+    {{ range $tag := $post.Params.tags }}
+	{{ $post_tag := ($Site.GetPage $tag).Page.Params }}
+		{{ if eq $post_tag.id $term.id }}
+        {{partial "taxon_item" $include_dict }}
+		{{ end }}
+	{{ end }}
+	{{ end }}
+    {{if $post.Params.categories}}
+    {{ range $category := $post.Params.categories }}
+	{{ $post_category := ($Site.GetPage $category).Page.Params }}
+		{{ if eq $post_category.id $term.id }}
+        {{partial "taxon_item" $include_dict }}
+		{{ end }}
+	{{ end }}
+	{{ end }}
+    {{if $post.Params.author}}
+    {{ $author := ($Site.GetPage $post.Params.author).Page.Params }}
+        {{ if eq $author.id $term.id}}
+        {{partial "taxon_item" $include_dict }}
+        {{end}}
+    {{end}}
+{{ end }}
+</div>
+</div>
+</section>
+<script>
+    var element = document.querySelectorAll('[container-grid]');
+
+    function myFunction(x) {
+        if (x.matches) { // If media query matches
+            for (i = 0; i < element.length; i++) {
+                element[i].classList.add("container--medium");
+            }
+
+        } else {
+            for (i = 0; i < element.length; i++) {
+                element[i].classList.remove("container--medium");
+            };
+        }
+    }
+    var x = window.matchMedia("(max-width: 800px)");
+    myFunction(x);
+    x.addListener(myFunction);
+</script>
+{{ end}}
