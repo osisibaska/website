@@ -36,14 +36,6 @@ sections:
   templates:
   - events
 - type: directory
-  path: content/departement
-  label: Departement
-  create: documents
-  match: "*"
-  new_doc_ext: md
-  templates:
-  - departement
-- type: directory
   path: content
   label: Pages
   create: documents
@@ -53,6 +45,24 @@ sections:
   templates:
   - page
   - advanced
+- type: heading
+  label: Departement
+- type: directory
+  path: content/ikhwan
+  label: Ikhwan
+  create: documents
+  match: "*"
+  new_doc_ext: md
+  templates:
+  - departement
+- type: directory
+  path: content/akhwat
+  label: Akhwat
+  create: documents
+  match: "*"
+  new_doc_ext: ".md"
+  templates:
+  - departement
 - type: heading
   label: Authors, Categories, & Tags
 - type: directory
