@@ -14,9 +14,10 @@ fields:
   - departement_hero
   - departement_features
   - departement_grid
+  - gallery_section
   config:
     min: 3
-    max: 3
+    max: 4
 - type: field_group
   name: seo
   label: seo

@@ -60,7 +60,7 @@ sections:
   label: Akhwat
   create: documents
   match: "*"
-  new_doc_ext: ".md"
+  new_doc_ext: md
   templates:
   - departement
 - type: heading
