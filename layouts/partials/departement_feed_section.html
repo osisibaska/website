@@ -26,7 +26,7 @@
         <div class="tab-content">
             <section id="tab-item-1">
                 <div class="container" container-grid><div class="grid">
-                    {{ $departements := (.Site.GetPage "section" "/departement").Pages }}
+                    {{ $departements := (.Site.GetPage "section" "ikhwan").Pages }}
                     {{ range  $departement := $departements}}
                         {{range $section := .Params.sections}}
                             {{if eq $section.type "hero_section"}}
@@ -38,7 +38,17 @@
                 </div></div>
             </section>
             <section id="tab-item-2">
-                <h1>Two</h1>
+                <div class="container" container-grid><div class="grid">
+                    {{ $departements := (.Site.GetPage "section" "akhwat").Pages }}
+                    {{ range  $departement := $departements}}
+                        {{range $section := .Params.sections}}
+                            {{if eq $section.type "hero_section"}}
+                            {{ $include_dict := dict "section" $section "site" $departement}}
+                            {{ partial "departement_feed_item.html" $include_dict }}
+                            {{end}}
+                        {{end}}
+                    {{ end }}
+                </div></div>
             </section>
         </div>
     </div>

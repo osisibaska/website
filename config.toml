@@ -7,6 +7,8 @@ disableKinds = ["taxonomy", "term"]
 
 [permalinks]
   data = '/article/:sections[1:]/:slug'
+  ikhwan = 'departement/ikhwan/:filename'
+  akhwat = 'departement/akhwat/:filename'
 
 [minify]
   minifyOutput = true
