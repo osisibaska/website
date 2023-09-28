@@ -1,5 +1,5 @@
 ---
-title: 'Event1'
+title: 'IBASKA JAYA'
 subtitle: >-
   Idemque diviserunt naturam hominis in animum et corpus. Si enim ad populum me
   vocas, eum.
